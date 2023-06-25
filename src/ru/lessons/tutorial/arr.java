@@ -1,3 +1,5 @@
+package ru.lessons.tutorial;
+
 public class arr {
     public static int[] mergeArrays(int[] a1, int[] a2) {
         int [] result = new int[a1.length + a2.length];

@@ -1,3 +1,5 @@
+package ru.lessons.tutorial;
+
 import java.security.MessageDigest;
 
 public class Quiz {
