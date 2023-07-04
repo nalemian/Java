@@ -1,6 +1,6 @@
-package ru.lessons.tutorial;
+package ru.nalemian.lesson0;
 
-public class arr {
+public class Arr {
     public static int[] mergeArrays(int[] a1, int[] a2) {
         int [] result = new int[a1.length + a2.length];
         int pos1 = 0;
