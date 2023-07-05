@@ -1,3 +1,5 @@
+package ru.lessons.tutorial;
+
 import java.math.BigInteger;
 import java.util.Arrays; //для Arrays.equals(a,b);
 

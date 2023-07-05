@@ -1,3 +1,5 @@
+package ru.lessons.tutorial;
+
 public class transformation {
     public static void main(String[] args) {
         int intValue =1024;

@@ -1,3 +1,5 @@
+package ru.lessons.tutorial;
+
 public class palindrom {
     public static void main(String[] args) {
        System.out.println(isPalindrome("Madam, I'm Adam!"));
