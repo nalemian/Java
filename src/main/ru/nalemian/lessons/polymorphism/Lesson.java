@@ -1,6 +1,14 @@
 package ru.nalemian.lessons.polymorphism;
 
 public interface Lesson {
+    String name = "урок";
+
+    String getLessonName();
+
     void schoolSubject();
-    default void defaultSomething() {}
+
+    void start();
+
+    default void defaultSomething() {
+    }
 }

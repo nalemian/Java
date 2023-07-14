@@ -5,29 +5,29 @@ public class Mathematician extends Teacher {
     public void teaching() {
         System.out.println("я учу математике!");
     }
+
     @Override
-    public void startLesson(String lessonName) {
-        if(lessonName=="математика") {
-            System.out.println("начинаю урок '"+lessonName+"'");
-            Lesson mathLesson=new MathLesson();
-            mathLesson.schoolSubject();
-            Student student1=new BadStudent();
-            askHomework(student1, lessonName);
-            Student student2=new ExcellentStudent();
-            askHomework(student2, lessonName);
+    public void startLesson(Lesson newLesson) {
+        Student student1 = new BadStudent();
+        Student student2 = new ExcellentStudent();
+        String newLessonName = newLesson.getLessonName();
+        if (newLessonName.equals("математика")) {
+            System.out.println("начинаю урок '" + newLessonName + "'");
+            newLesson.start();
+            askHomework(student1, newLessonName);
+            askHomework(student2, newLessonName);
         } else {
-            System.out.println(lessonName+" - не мой предмет");
-            Lesson physicsLesson=new PhysicsLesson();
-            physicsLesson.schoolSubject();
+            System.out.println(newLessonName + " - не мой предмет");
         }
     }
+
     @Override
     public void askHomework(Student student, String name) {
         student.giveHomework();
-        if(student.homework) {
-            System.out.println("молодец, "+student.studentName+"! Ставлю 5 по предмету '"+name+"'");
+        if (student.homework) {
+            System.out.println("молодец, " + student.studentName + "! Ставлю 5 по предмету '" + name + "'");
         } else {
-            System.out.println("очень плохо, "+student.studentName+"! Ставлю 2 по предмету '"+name+"'");
+            System.out.println("очень плохо, " + student.studentName + "! Ставлю 2 по предмету '" + name + "'");
         }
     }
 }
