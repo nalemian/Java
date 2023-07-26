@@ -5,7 +5,7 @@ public class Teacher {
         System.out.println("Я обучаю!");
     }
 
-    public void startLesson(Lesson newLesson) {
+    public void startLesson(Lesson newLesson, Student student1, Student student2) {
         System.out.println("начинаю урок");
     }
 

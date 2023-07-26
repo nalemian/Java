@@ -7,7 +7,7 @@ class TeacherTest {
     public void testTeacherCreation() {
         Teacher physicist = new Physicist();
         physicist.teaching();
-        Teacher mathematician=new Mathematician();
+        Teacher mathematician = new Mathematician();
         mathematician.teaching();
     }
 }

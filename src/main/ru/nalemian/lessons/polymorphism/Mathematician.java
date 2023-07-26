@@ -7,17 +7,19 @@ public class Mathematician extends Teacher {
     }
 
     @Override
-    public void startLesson(Lesson newLesson) {
-        Student student1 = new BadStudent();
-        Student student2 = new ExcellentStudent();
-        String newLessonName = newLesson.getLessonName();
-        if (newLessonName.equals("математика")) {
-            System.out.println("начинаю урок '" + newLessonName + "'");
-            newLesson.start();
-            askHomework(student1, newLessonName);
-            askHomework(student2, newLessonName);
+    public void startLesson(Lesson newLesson, Student student1, Student student2) {
+        if (newLesson.getLessonIsOver()) {
+            System.out.println("этот урок уже закончился");
         } else {
-            System.out.println(newLessonName + " - не мой предмет");
+            String newLessonName = newLesson.getLessonName();
+            if (newLessonName.equals("математика")) {
+                System.out.println("начинаю урок '" + newLessonName + "'");
+                newLesson.start();
+                askHomework(student1, newLessonName);
+                askHomework(student2, newLessonName);
+            } else {
+                System.out.println(newLessonName + " - не мой предмет");
+            }
         }
     }
 
