@@ -1,4 +1,4 @@
-package ru.lessons.tutorial.other;
+package ru.nalemian.lesson0.other;
 //пакет по умолчанию - пакет с пустым именем, куда попадают классы, в которых нет директивы package
 
 //import static java.lang.System.*;

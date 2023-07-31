@@ -9,7 +9,8 @@ public abstract class Student {
         this.studentName = "имя";
     }
 
-    public void giveHomework() {
+    public Boolean giveHomework() {
         System.out.println("Домашняя работа");
+        return homework;
     }
 }

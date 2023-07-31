@@ -5,9 +5,4 @@ public class BadStudent extends Student {
         this.homework = false;
         this.studentName = "Таня";
     }
-
-    @Override
-    public void giveHomework() {
-        System.out.println("домашняя работа не сделана!");
-    }
 }

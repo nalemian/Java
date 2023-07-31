@@ -1,4 +1,4 @@
-package ru.lessons.tutorial;
+package ru.nalemian.lesson0;
 
 import java.math.BigInteger;
 import java.util.Arrays; //для Arrays.equals(a,b);

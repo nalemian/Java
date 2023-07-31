@@ -1,4 +1,4 @@
-package ru.lessons.tutorial;
+package ru.nalemian.lesson0;
 
 public class transformation {
     public static void main(String[] args) {
