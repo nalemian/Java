@@ -5,4 +5,10 @@ public class ExcellentStudent extends Student {
         this.homework = true;
         this.studentName = "Аня";
     }
+
+    @Override
+    public Boolean giveHomework() {
+        System.out.println("домашняя работа сделана");
+        return homework;
+    }
 }

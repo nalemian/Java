@@ -1,16 +1,14 @@
-package ru.nalemian.lessons.polymorphism;
+package ru.nalemian.lessons.teacher;
 
 import org.junit.jupiter.api.Test;
-import ru.nalemian.lessons.teacher.Knowledge;
-import ru.nalemian.lessons.teacher.NewTeacher;
+import ru.nalemian.lessons.polymorphism.*;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class SchoolWorkingProcessTest {
-
+class KnowledgeTest {
     @Test
     void main() {
         Physicist physicist = new Physicist("физика");
@@ -30,5 +28,15 @@ class SchoolWorkingProcessTest {
         physicist.teachLesson(physicsLesson, studentCollection);
         physicist.teachLesson(physicsLesson, studentCollection);
         physicist.teachLesson(mathLesson, studentCollection);
+        for (Student student : studentCollection) {
+            for (Knowledge knowledge : student.getKnowledges()) {
+                if("физика".equals(knowledge.getLessonName())) {
+                    System.out.println(true);
+                }
+                if("математика".equals(knowledge.getLessonName())) {
+                    System.out.println(true);
+                }
+            }
+        }
     }
 }

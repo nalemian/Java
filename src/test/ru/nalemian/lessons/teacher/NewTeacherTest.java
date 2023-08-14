@@ -12,7 +12,7 @@ class NewTeacherTest {
 
     @Test
     void whenLessonIsOver_thenRuntimeException() {
-        NewTeacher newTeacher = new NewTeacher();
+        NewTeacher newTeacher = new NewTeacher("урок");
         Lesson newLesson = new MathLesson();
         newLesson.start();
         assertThrows(

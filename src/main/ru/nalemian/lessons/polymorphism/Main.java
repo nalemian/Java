@@ -1,10 +1,9 @@
 package ru.nalemian.lessons.polymorphism;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 public class Main {
     public static void main(String[] args) {
-        Teacher physicist = new Physicist();
-        physicist.teaching();
-        Teacher mathematician = new Mathematician();
-        mathematician.teaching();
     }
 }

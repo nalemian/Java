@@ -18,7 +18,7 @@ public abstract class Student {
     }
 
     public Boolean giveHomework() {
-        System.out.println("Домашняя работа");
+        System.out.println("домашняя работа");
         return homework;
     }
 
