@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class SchoolWorkingProcessTest {
 
     @Test
-    void main() {
+    void allProcess() {
         Physicist physicist = new Physicist("физика");
         physicist.teaching();
         Mathematician mathematician = new Mathematician("математика");
@@ -24,6 +24,8 @@ class SchoolWorkingProcessTest {
         Student excellentStudent = new ExcellentStudent();
         studentCollection.add(badStudent);
         studentCollection.add(excellentStudent);
+        mathematician.giveHomework(studentCollection, mathematician.getNameOfLesson());
+        physicist.giveHomework(studentCollection, physicist.getNameOfLesson());
         mathematician.teachLesson(mathLesson, studentCollection);
         mathematician.teachLesson(mathLesson, studentCollection);
         mathematician.teachLesson(physicsLesson, studentCollection);

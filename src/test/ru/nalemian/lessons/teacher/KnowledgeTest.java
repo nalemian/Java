@@ -7,10 +7,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class KnowledgeTest {
     @Test
-    void main() {
+    void testThatLessonGiveStudentKnowledge() {
         Physicist physicist = new Physicist("физика");
         physicist.teaching();
         Mathematician mathematician = new Mathematician("математика");
@@ -29,14 +30,13 @@ class KnowledgeTest {
         physicist.teachLesson(physicsLesson, studentCollection);
         physicist.teachLesson(mathLesson, studentCollection);
         for (Student student : studentCollection) {
+            Collection<String> names = new ArrayList<>();
             for (Knowledge knowledge : student.getKnowledges()) {
-                if("физика".equals(knowledge.getLessonName())) {
-                    System.out.println(true);
-                }
-                if("математика".equals(knowledge.getLessonName())) {
-                    System.out.println(true);
-                }
+                names.add(knowledge.getLessonName());
             }
+            assertTrue(names.contains("физика"));
+            assertTrue(names.contains("математика"));
+            assertEquals(2, names.size());
         }
     }
 }

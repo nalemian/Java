@@ -7,8 +7,9 @@ public class ExcellentStudent extends Student {
     }
 
     @Override
-    public Boolean giveHomework() {
-        System.out.println("домашняя работа сделана");
-        return homework;
+    public Boolean doHomework() {
+        this.getCompletedWork().addAll(this.getNotCompletedWork());
+        this.getNotCompletedWork().clear();
+        return true;
     }
 }
