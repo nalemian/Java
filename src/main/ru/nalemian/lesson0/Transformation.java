@@ -1,6 +1,6 @@
-package ru.lessons.tutorial;
+package ru.nalemian.lesson0;
 
-public class transformation {
+public class Transformation {
     public static void main(String[] args) {
         int intValue =1024;
         byte byteValue=(byte) intValue; //0, лишние старшие биты отбрасываются

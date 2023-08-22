@@ -1,4 +1,4 @@
-package ru.lessons.tutorial;
+package ru.nalemian.lesson0;
 
 public class HelloWorld { //объявление класса обязательно, public - доступен всем, если public, то имя класса должно = имени файла, иначе не скомпилируется
     public static void main(String[] args) { //метод main - точка входа в программу, принимает массив строк args, void - не возвращает значения, public разрешает доступ к методу отовсюду, static - метод можно вызывать, не создавая экземпляр класса, содержащего его.

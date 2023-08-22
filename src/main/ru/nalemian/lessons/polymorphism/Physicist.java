@@ -1,8 +1,14 @@
 package ru.nalemian.lessons.polymorphism;
 
-public class Physicist extends Teacher {
-    @Override
+import ru.nalemian.lessons.teacher.NewTeacher;
+
+public class Physicist extends NewTeacher {
+
+    public Physicist(String nameOfLesson) {
+        super(nameOfLesson);
+    }
+
     public void teaching() {
-        System.out.println("Я учу физике!");
+        System.out.println("я учу физике!");
     }
 }
