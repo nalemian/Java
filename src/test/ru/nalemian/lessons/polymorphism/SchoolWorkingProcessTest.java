@@ -1,8 +1,10 @@
 package ru.nalemian.lessons.polymorphism;
 
 import org.junit.jupiter.api.Test;
+import ru.nalemian.lessons.polymorphism.student.BadStudent;
+import ru.nalemian.lessons.polymorphism.student.ExcellentStudent;
+import ru.nalemian.lessons.polymorphism.student.Student;
 import ru.nalemian.lessons.teacher.Knowledge;
-import ru.nalemian.lessons.teacher.NewTeacher;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -11,6 +13,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class SchoolWorkingProcessTest {
 
+    /**
+     *
+     */
     @Test
     void allProcess() {
         Physicist physicist = new Physicist("физика");
@@ -20,8 +25,8 @@ class SchoolWorkingProcessTest {
         Lesson mathLesson = new MathLesson();
         Lesson physicsLesson = new PhysicsLesson();
         Collection<Student> studentCollection = new ArrayList<>();
-        Student badStudent = new BadStudent();
-        Student excellentStudent = new ExcellentStudent();
+        Student badStudent = new BadStudent("Таня");
+        Student excellentStudent = new ExcellentStudent("Аня");
         studentCollection.add(badStudent);
         studentCollection.add(excellentStudent);
         mathematician.giveHomework(studentCollection, mathematician.getNameOfLesson());
@@ -34,19 +39,19 @@ class SchoolWorkingProcessTest {
         for (Student student : studentCollection) {
             if (student.getCompletedWork().isEmpty()) {
                 System.out.println("домашняя работа не сделана");
-                System.out.println("очень плохо, " + student.studentName + "! Ставлю 2 по предмету 'математика'");
+                System.out.println("очень плохо, " + student.getStudentName() + "! Ставлю 2 по предмету 'математика'");
             } else {
                 for (Homework homework : student.getCompletedWork()) {
                     if (homework.getLessonName().equals("математика")) {
                         homeworkSearch = true;
                         System.out.println("домашняя работа сделана");
-                        System.out.println("молодец, " + student.studentName + "! Ставлю 5 по предмету 'математика'");
+                        System.out.println("молодец, " + student.getStudentName() + "! Ставлю 5 по предмету 'математика'");
                         break;
                     }
                 }
                 if (!homeworkSearch) {
                     System.out.println("домашняя работа не сделана");
-                    System.out.println("очень плохо, " + student.studentName + "! Ставлю 2 по предмету 'математика'");
+                    System.out.println("очень плохо, " + student.getStudentName() + "! Ставлю 2 по предмету 'математика'");
                 }
             }
         }
@@ -60,19 +65,19 @@ class SchoolWorkingProcessTest {
         for (Student student : studentCollection) {
             if (student.getCompletedWork().isEmpty()) {
                 System.out.println("домашняя работа не сделана");
-                System.out.println("очень плохо, " + student.studentName + "! Ставлю 2 по предмету 'физика'");
+                System.out.println("очень плохо, " + student.getStudentName() + "! Ставлю 2 по предмету 'физика'");
             } else {
                 for (Homework homework : student.getCompletedWork()) {
                     if (homework.getLessonName().equals("физика")) {
                         homeworkSearch = true;
                         System.out.println("домашняя работа сделана");
-                        System.out.println("молодец, " + student.studentName + "! Ставлю 5 по предмету 'физика'");
+                        System.out.println("молодец, " + student.getStudentName() + "! Ставлю 5 по предмету 'физика'");
                         break;
                     }
                 }
                 if (!homeworkSearch) {
                     System.out.println("домашняя работа не сделана");
-                    System.out.println("очень плохо, " + student.studentName + "! Ставлю 2 по предмету 'физика'");
+                    System.out.println("очень плохо, " + student.getStudentName() + "! Ставлю 2 по предмету 'физика'");
                 }
             }
         }

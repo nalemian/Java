@@ -1,5 +1,7 @@
 package ru.nalemian.lessons.polymorphism;
 
+import ru.nalemian.lessons.polymorphism.student.Student;
+
 public class Teacher {
     public void teaching() {
         System.out.println("Я обучаю!");

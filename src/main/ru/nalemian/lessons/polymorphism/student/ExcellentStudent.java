@@ -1,9 +1,8 @@
-package ru.nalemian.lessons.polymorphism;
+package ru.nalemian.lessons.polymorphism.student;
 
 public class ExcellentStudent extends Student {
-    public ExcellentStudent() {
-        this.homework = true;
-        this.studentName = "Аня";
+    public ExcellentStudent(String name) {
+        super(name);
     }
 
     @Override

@@ -2,7 +2,7 @@ package ru.nalemian.lessons.teacher;
 
 import ru.nalemian.lessons.polymorphism.Homework;
 import ru.nalemian.lessons.polymorphism.Lesson;
-import ru.nalemian.lessons.polymorphism.Student;
+import ru.nalemian.lessons.polymorphism.student.Student;
 
 import java.time.LocalDate;
 import java.util.Collection;
@@ -18,43 +18,35 @@ public class NewTeacher {
         return this.nameOfLesson;
     }
 
-    public void teachLesson(Lesson newLesson, Collection<Student> studentCollection) {
-        if (newLesson.getLessonIsOver()) {
-            throw new RuntimeException(); //для исключений
+    public void teachLesson(Lesson lesson, Collection<Student> studentCollection) {
+        if (lesson.getLessonIsOver()) {
+            throw new RuntimeException("Урок уже закончился"); //для исключений
         }
-        String newLessonName = newLesson.getLessonName();
-        boolean knowledgeSearch = false;
-        for (Student student : studentCollection) {
-            for (Knowledge knowledge : student.getKnowledges()) {
-                if (knowledge.getLessonName().equals(newLessonName)) {
-                    if (newLessonName.equals(getNameOfLesson())) {
-                        System.out.println("урок " + "'" + newLessonName + "' уже закончился");
-                    } else {
-                        System.out.println(newLessonName + " - не мой предмет");
-                    }
-                    knowledgeSearch = true;
-                }
+        String lessonName = lesson.getLessonName();
+
+        if (lessonName.equals(getNameOfLesson())) {
+            System.out.println("начинаю урок '" + lessonName + "'");
+
+            //урок начался
+            lesson.start();
+            // проверяем предыдущие домашки по этому уроку
+
+            // TODO придумай какая должна быть логика по проверке ДЗ
+
+            // даем знания студентам
+            for (Student student : studentCollection) {
+                student.addKnowledge(new Knowledge(lessonName));
             }
-            if (knowledgeSearch) {
-                break;
-            }
-        }
-        if (!knowledgeSearch) {
-            if (newLessonName.equals(getNameOfLesson())) {
-                System.out.println("начинаю урок '" + newLessonName + "'");
-                newLesson.start();
-                for (Student student : studentCollection) {
-                    student.getKnowledges().add(new Knowledge(newLessonName));
-                }
-            } else {
-                System.out.println(newLessonName + " - не мой предмет");
-            }
+
+            // даем домашку студентам
+            giveHomework(studentCollection, lessonName);
+
         }
     }
 
     public void giveHomework(Collection<Student> studentCollection, String name) {
         for (Student student : studentCollection) {
-            student.getNotCompletedWork().add(new Homework(name, LocalDate.now()));
+            student.addHomework(new Homework(name, LocalDate.now()));
         }
     }
 }

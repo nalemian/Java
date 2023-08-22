@@ -2,7 +2,7 @@ package ru.nalemian.lesson0;
 
 import java.math.BigInteger;
 
-public class ifElse {
+public class IfElse {
     public static void main(String[] args) { //если void и написать пустой return, то будет немедленный выход из метода
         boolean weatherIsGood=true;
         if(weatherIsGood) {

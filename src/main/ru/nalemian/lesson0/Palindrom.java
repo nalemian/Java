@@ -1,6 +1,6 @@
 package ru.nalemian.lesson0;
 
-public class palindrom {
+public class Palindrom {
     public static void main(String[] args) {
        System.out.println(isPalindrome("Madam, I'm Adam!"));
     }

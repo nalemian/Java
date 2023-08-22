@@ -1,6 +1,6 @@
 package ru.nalemian.lesson0;
 
-public class charExpression {
+public class CharExpression {
     public static char charExp(int a) {
         char charValue='\\';
         a+=charValue;

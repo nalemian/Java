@@ -3,7 +3,7 @@ package ru.nalemian.lesson0;
 import java.math.BigInteger;
 import java.util.Arrays; //для Arrays.equals(a,b);
 
-public class arrStr {
+public class ArrStr {
     public static void main(String[] arg) {
         BigInteger number;
         number=new BigInteger("123"); //объявление

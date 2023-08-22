@@ -2,6 +2,9 @@ package ru.nalemian.lessons.teacher;
 
 import org.junit.jupiter.api.Test;
 import ru.nalemian.lessons.polymorphism.*;
+import ru.nalemian.lessons.polymorphism.student.BadStudent;
+import ru.nalemian.lessons.polymorphism.student.ExcellentStudent;
+import ru.nalemian.lessons.polymorphism.student.Student;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -19,8 +22,8 @@ class KnowledgeTest {
         Lesson mathLesson = new MathLesson();
         Lesson physicsLesson = new PhysicsLesson();
         Collection<Student> studentCollection = new ArrayList<>();
-        Student badStudent = new BadStudent();
-        Student excellentStudent = new ExcellentStudent();
+        Student badStudent = new BadStudent("Таня");
+        Student excellentStudent = new ExcellentStudent("Аня");
         studentCollection.add(badStudent);
         studentCollection.add(excellentStudent);
         mathematician.teachLesson(mathLesson, studentCollection);
