@@ -20,9 +20,4 @@ class NewTeacherTest {
                 () -> newTeacher.teachLesson(newLesson, Collections.emptyList())
         );
     }
-
-    @Test
-    void addToCollection() {
-
-    }
 }

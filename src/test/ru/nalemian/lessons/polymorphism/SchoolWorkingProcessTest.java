@@ -27,10 +27,69 @@ class SchoolWorkingProcessTest {
         mathematician.giveHomework(studentCollection, mathematician.getNameOfLesson());
         physicist.giveHomework(studentCollection, physicist.getNameOfLesson());
         mathematician.teachLesson(mathLesson, studentCollection);
+        for (Student student : studentCollection) {
+            student.doHomework();
+        }
+        Boolean homeworkSearch = false;
+        for (Student student : studentCollection) {
+            if (student.getCompletedWork().isEmpty()) {
+                System.out.println("домашняя работа не сделана");
+                System.out.println("очень плохо, " + student.studentName + "! Ставлю 2 по предмету 'математика'");
+            } else {
+                for (Homework homework : student.getCompletedWork()) {
+                    if (homework.getLessonName().equals("математика")) {
+                        homeworkSearch = true;
+                        System.out.println("домашняя работа сделана");
+                        System.out.println("молодец, " + student.studentName + "! Ставлю 5 по предмету 'математика'");
+                        break;
+                    }
+                }
+                if (!homeworkSearch) {
+                    System.out.println("домашняя работа не сделана");
+                    System.out.println("очень плохо, " + student.studentName + "! Ставлю 2 по предмету 'математика'");
+                }
+            }
+        }
         mathematician.teachLesson(mathLesson, studentCollection);
         mathematician.teachLesson(physicsLesson, studentCollection);
         physicist.teachLesson(physicsLesson, studentCollection);
+        for (Student student : studentCollection) {
+            student.doHomework();
+        }
+        homeworkSearch = false;
+        for (Student student : studentCollection) {
+            if (student.getCompletedWork().isEmpty()) {
+                System.out.println("домашняя работа не сделана");
+                System.out.println("очень плохо, " + student.studentName + "! Ставлю 2 по предмету 'физика'");
+            } else {
+                for (Homework homework : student.getCompletedWork()) {
+                    if (homework.getLessonName().equals("физика")) {
+                        homeworkSearch = true;
+                        System.out.println("домашняя работа сделана");
+                        System.out.println("молодец, " + student.studentName + "! Ставлю 5 по предмету 'физика'");
+                        break;
+                    }
+                }
+                if (!homeworkSearch) {
+                    System.out.println("домашняя работа не сделана");
+                    System.out.println("очень плохо, " + student.studentName + "! Ставлю 2 по предмету 'физика'");
+                }
+            }
+        }
         physicist.teachLesson(physicsLesson, studentCollection);
         physicist.teachLesson(mathLesson, studentCollection);
+        assertFalse(badStudent.getNotCompletedWork().isEmpty());
+        assertTrue(excellentStudent.getNotCompletedWork().isEmpty());
+        assertTrue(badStudent.getCompletedWork().isEmpty());
+        assertFalse(excellentStudent.getCompletedWork().isEmpty());
+        for (Student student : studentCollection) {
+            Collection<String> names = new ArrayList<>();
+            for (Knowledge knowledge : student.getKnowledges()) {
+                names.add(knowledge.getLessonName());
+            }
+            assertTrue(names.contains("физика"));
+            assertTrue(names.contains("математика"));
+            assertEquals(2, names.size());
+        }
     }
 }

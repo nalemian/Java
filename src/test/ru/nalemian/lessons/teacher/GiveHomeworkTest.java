@@ -18,6 +18,6 @@ class GiveHomeworkTest {
         Collection<Student> studentCollection = new ArrayList<>();
         studentCollection.add(badStudent);
         mathematician.giveHomework(studentCollection, mathematician.getNameOfLesson());
-        assertTrue(!badStudent.getNotCompletedWork().isEmpty());
+        assertFalse(badStudent.getNotCompletedWork().isEmpty());
     }
 }

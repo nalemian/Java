@@ -11,15 +11,30 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class DoHomeworkTest {
     @Test
-    void testThatHomeworkIsDone() {
-        Physicist physicist = new Physicist("физика");
-        Lesson physicsLesson = new PhysicsLesson();
-        Student excellentStudent = new ExcellentStudent();
+    void areTheRightStudentsDoingTheHomework() {
+        Mathematician mathematician = new Mathematician("математика");
+        Lesson mathLesson = new MathLesson();
         Collection<Student> studentCollection = new ArrayList<>();
+        Student badStudent = new BadStudent();
+        Student excellentStudent = new ExcellentStudent();
+        studentCollection.add(badStudent);
         studentCollection.add(excellentStudent);
-        physicist.giveHomework(studentCollection, physicist.getNameOfLesson());
-        physicist.teachLesson(physicsLesson, studentCollection);
-        assertTrue(excellentStudent.getNotCompletedWork().isEmpty());
-        assertTrue(!excellentStudent.getCompletedWork().isEmpty());
+        mathematician.giveHomework(studentCollection, mathematician.getNameOfLesson());
+        mathematician.teachLesson(mathLesson, studentCollection);
+        for (Student student : studentCollection) {
+            student.doHomework();
+        }
+        for (Student student : studentCollection) {
+            if (student.getCompletedWork().isEmpty()) {
+                assertTrue(student.studentName.equals("Таня"));
+            } else {
+                for (Homework homework : student.getCompletedWork()) {
+                    if (homework.getLessonName().equals("математика")) {
+                        assertTrue(student.studentName.equals("Аня"));
+                        break;
+                    }
+                }
+            }
+        }
     }
 }

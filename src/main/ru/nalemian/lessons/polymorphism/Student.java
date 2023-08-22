@@ -23,8 +23,7 @@ public abstract class Student {
         this.notCompletedWork = new ArrayList<>();
     }
 
-    public Boolean doHomework() {
-        return false;
+    public void doHomework() {
     }
 
     public Collection<Knowledge> getKnowledges() {

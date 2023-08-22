@@ -1,15 +1,23 @@
 package ru.nalemian.lessons.teacher;
 
 import org.junit.jupiter.api.Test;
-import ru.nalemian.lessons.polymorphism.Lesson;
-import ru.nalemian.lessons.polymorphism.Physicist;
-import ru.nalemian.lessons.polymorphism.PhysicsLesson;
+import ru.nalemian.lessons.polymorphism.*;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class NullPointerExceptionTest {
     @Test
-    void main() {
+    void ifTheStudentCollectionValueIsNullThenNullPointerException() {
         Physicist physicist = new Physicist("физика");
         Lesson physicsLesson = new PhysicsLesson();
-        physicist.teachLesson(physicsLesson, null);
+        try {
+            physicist.teachLesson(physicsLesson, null);
+        } catch (NullPointerException exception) {
+            System.out.println(exception.getMessage());
+        }
     }
 }

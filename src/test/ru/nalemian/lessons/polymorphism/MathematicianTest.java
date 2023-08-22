@@ -2,33 +2,52 @@ package ru.nalemian.lessons.polymorphism;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class MathematicianTest {
-    @Test
-    void startLesson() {
-        String lessonName = "математика";
-        if (lessonName == "математика") {
-            System.out.println("начинаю урок '" + lessonName + "'");
-            Lesson mathLesson = new MathLesson();
-            mathLesson.schoolSubject();
-
-        } else {
-            System.out.println(lessonName + " - не мой предмет");
-            Lesson physicsLesson = new PhysicsLesson();
-            physicsLesson.schoolSubject();
-        }
-    }
 
     @Test
     void askHomework() {
-        Student student = new ExcellentStudent();
-        String name = "математика";
-        student.giveHomework();
-        if (student.homework) {
-            System.out.println("молодец, " + student.studentName + "! Ставлю 5 по предмету '" + name + "'");
-        } else {
-            System.out.println("очень плохо, " + student.studentName + "! Ставлю 2 по предмету '" + name + "'");
+        Mathematician mathematician = new Mathematician("математика");
+        Lesson mathLesson = new MathLesson();
+        Collection<Student> studentCollection = new ArrayList<>();
+        Student badStudent = new BadStudent();
+        Student excellentStudent = new ExcellentStudent();
+        studentCollection.add(badStudent);
+        studentCollection.add(excellentStudent);
+        mathematician.giveHomework(studentCollection, mathematician.getNameOfLesson());
+        mathematician.teachLesson(mathLesson, studentCollection);
+        for (Student student : studentCollection) {
+            student.doHomework();
         }
+        Boolean homeworkSearch = false;
+        for (Student student : studentCollection) {
+            if (student.getCompletedWork().isEmpty()) {
+                assertEquals("Таня", student.studentName);
+                System.out.println("домашняя работа не сделана");
+                System.out.println("очень плохо, " + student.studentName + "! Ставлю 2 по предмету 'математика'");
+            } else {
+                for (Homework homework : student.getCompletedWork()) {
+                    if (homework.getLessonName().equals("математика")) {
+                        assertEquals("Аня", student.studentName);
+                        homeworkSearch = true;
+                        System.out.println("домашняя работа сделана");
+                        System.out.println("молодец, " + student.studentName + "! Ставлю 5 по предмету 'математика'");
+                        break;
+                    }
+                }
+                if (!homeworkSearch) {
+                    System.out.println("домашняя работа не сделана");
+                    System.out.println("очень плохо, " + student.studentName + "! Ставлю 2 по предмету 'математика'");
+                }
+            }
+        }
+        assertFalse(badStudent.getNotCompletedWork().isEmpty());
+        assertTrue(excellentStudent.getNotCompletedWork().isEmpty());
+        assertTrue(badStudent.getCompletedWork().isEmpty());
+        assertFalse(excellentStudent.getCompletedWork().isEmpty());
     }
 }
