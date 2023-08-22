@@ -10,9 +10,12 @@ import java.util.HashSet;
 public abstract class Student {
 
     private final String studentName;
+    // TODO знания тоже должны отличаться. ведь тема урока вчера != теме урока сегодня
     private final Collection<Knowledge> knowledges;
     private final Collection<Homework> completedWork;
     private final Collection<Homework> notCompletedWork;
+    // TODO должен появиться массив оценок
+    // должна быть возможность отличить одну оценку от другой
 
     public Student(String name) {
         this.studentName = name;
