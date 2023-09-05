@@ -7,6 +7,7 @@ public class ExcellentStudent extends Student {
 
     @Override
     public void doHomework() {
+        System.out.println("Ученик делает домашку");
         this.getCompletedWork().addAll(this.getNotCompletedWork());
         this.getNotCompletedWork().clear();
     }
