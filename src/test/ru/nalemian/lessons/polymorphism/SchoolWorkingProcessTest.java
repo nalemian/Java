@@ -1,6 +1,6 @@
 package ru.nalemian.lessons.polymorphism;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import ru.nalemian.lessons.polymorphism.student.BadStudent;
 import ru.nalemian.lessons.polymorphism.student.ExcellentStudent;
 import ru.nalemian.lessons.polymorphism.student.Student;
@@ -11,13 +11,12 @@ import java.util.Collection;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class SchoolWorkingProcessTest {
-
+public class SchoolWorkingProcessTest {
     /**
-     *
+     * здесь тестируется весь школьный процесс со всеми методами
      */
     @Test
-    void allProcess() {
+    public void allProcess() {
         Physicist physicist = new Physicist("физика");
         physicist.teaching();
         Mathematician mathematician = new Mathematician("математика");
@@ -31,58 +30,21 @@ class SchoolWorkingProcessTest {
         studentCollection.add(excellentStudent);
         mathematician.giveHomework(studentCollection, mathematician.getNameOfLesson());
         physicist.giveHomework(studentCollection, physicist.getNameOfLesson());
-        mathematician.teachLesson(mathLesson, studentCollection);
         for (Student student : studentCollection) {
             student.doHomework();
         }
-        Boolean homeworkSearch = false;
-        for (Student student : studentCollection) {
-            if (student.getCompletedWork().isEmpty()) {
-                System.out.println("домашняя работа не сделана");
-                System.out.println("очень плохо, " + student.getStudentName() + "! Ставлю 2 по предмету 'математика'");
-            } else {
-                for (Homework homework : student.getCompletedWork()) {
-                    if (homework.getLessonName().equals("математика")) {
-                        homeworkSearch = true;
-                        System.out.println("домашняя работа сделана");
-                        System.out.println("молодец, " + student.getStudentName() + "! Ставлю 5 по предмету 'математика'");
-                        break;
-                    }
-                }
-                if (!homeworkSearch) {
-                    System.out.println("домашняя работа не сделана");
-                    System.out.println("очень плохо, " + student.getStudentName() + "! Ставлю 2 по предмету 'математика'");
-                }
-            }
-        }
         mathematician.teachLesson(mathLesson, studentCollection);
-        mathematician.teachLesson(physicsLesson, studentCollection);
         physicist.teachLesson(physicsLesson, studentCollection);
+        //physicist.teachLesson(mathLesson, studentCollection);
+        for (Mark mark : badStudent.getMarks()) {
+            System.out.println(mark.getLessonName() + " : " + mark.getMark());
+        }
+        for (Mark mark : excellentStudent.getMarks()) {
+            System.out.println(mark.getLessonName() + " : " + mark.getMark());
+        }
         for (Student student : studentCollection) {
             student.doHomework();
         }
-        homeworkSearch = false;
-        for (Student student : studentCollection) {
-            if (student.getCompletedWork().isEmpty()) {
-                System.out.println("домашняя работа не сделана");
-                System.out.println("очень плохо, " + student.getStudentName() + "! Ставлю 2 по предмету 'физика'");
-            } else {
-                for (Homework homework : student.getCompletedWork()) {
-                    if (homework.getLessonName().equals("физика")) {
-                        homeworkSearch = true;
-                        System.out.println("домашняя работа сделана");
-                        System.out.println("молодец, " + student.getStudentName() + "! Ставлю 5 по предмету 'физика'");
-                        break;
-                    }
-                }
-                if (!homeworkSearch) {
-                    System.out.println("домашняя работа не сделана");
-                    System.out.println("очень плохо, " + student.getStudentName() + "! Ставлю 2 по предмету 'физика'");
-                }
-            }
-        }
-        physicist.teachLesson(physicsLesson, studentCollection);
-        physicist.teachLesson(mathLesson, studentCollection);
         assertFalse(badStudent.getNotCompletedWork().isEmpty());
         assertTrue(excellentStudent.getNotCompletedWork().isEmpty());
         assertTrue(badStudent.getCompletedWork().isEmpty());

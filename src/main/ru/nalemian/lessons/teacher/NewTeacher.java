@@ -2,6 +2,7 @@ package ru.nalemian.lessons.teacher;
 
 import ru.nalemian.lessons.polymorphism.Homework;
 import ru.nalemian.lessons.polymorphism.Lesson;
+import ru.nalemian.lessons.polymorphism.Mark;
 import ru.nalemian.lessons.polymorphism.student.Student;
 
 import java.time.LocalDate;
@@ -23,22 +24,57 @@ public class NewTeacher {
             throw new RuntimeException("Урок уже закончился"); //для исключений
         }
         String lessonName = lesson.getLessonName();
-
         if (lessonName.equals(getNameOfLesson())) {
             System.out.println("начинаю урок '" + lessonName + "'");
-
-            //урок начался
             lesson.start();
-            // проверяем предыдущие домашки по этому уроку
-
-            // TODO придумай какая должна быть логика по проверке ДЗ
-
-            // даем знания студентам
+            for (Student student : studentCollection) {
+                if (student.getCompletedWork().isEmpty() && student.getNotCompletedWork().isEmpty()) {
+                    break;
+                } else {
+                    if (student.getCompletedWork().isEmpty()) {
+                        for (Homework homework : student.getNotCompletedWork()) {
+                            if (this.nameOfLesson.equals(homework.getLessonName())) {
+                                if (!student.getMarks().isEmpty()) {
+                                    Integer allMarks = 0;
+                                    for (Mark mark : student.getMarks()) {
+                                        allMarks += mark.getMark();
+                                    }
+                                    Integer averageMark = allMarks / student.getMarks().size();
+                                    if (averageMark >= 4) {
+                                        student.getMarks().add(new Mark(homework.getLessonName(), 3));
+                                    } else {
+                                        student.getMarks().add(new Mark(homework.getLessonName(), 2));
+                                    }
+                                } else {
+                                    student.getMarks().add(new Mark(homework.getLessonName(), 2));
+                                }
+                            }
+                        }
+                    } else {
+                        for (Homework homework : student.getCompletedWork()) {
+                            if (this.nameOfLesson.equals(homework.getLessonName())) {
+                                if (!student.getMarks().isEmpty()) {
+                                    Integer allMarks = 0;
+                                    for (Mark mark : student.getMarks()) {
+                                        allMarks += mark.getMark();
+                                    }
+                                    int averageMark = allMarks / student.getMarks().size();
+                                    if (averageMark >= 4) {
+                                        student.getMarks().add(new Mark(homework.getLessonName(), 5));
+                                    } else {
+                                        student.getMarks().add(new Mark(homework.getLessonName(), 4));
+                                    }
+                                } else {
+                                    student.getMarks().add(new Mark(homework.getLessonName(), 5));
+                                }
+                            }
+                        }
+                    }
+                }
+            }
             for (Student student : studentCollection) {
                 student.addKnowledge(new Knowledge(lessonName));
             }
-
-            // даем домашку студентам
             giveHomework(studentCollection, lessonName);
 
         }
