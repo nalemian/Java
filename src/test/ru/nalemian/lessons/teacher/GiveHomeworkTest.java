@@ -17,7 +17,7 @@ class GiveHomeworkTest {
         Student badStudent = new BadStudent("Таня");
         Collection<Student> studentCollection = new ArrayList<>();
         studentCollection.add(badStudent);
-        mathematician.giveHomework(studentCollection, mathematician.getNameOfLesson(),"дроби");
+        mathematician.giveHomework(studentCollection, mathematician.getNameOfLesson(), "дроби");
         assertFalse(badStudent.getNotCompletedWork().isEmpty());
     }
 }

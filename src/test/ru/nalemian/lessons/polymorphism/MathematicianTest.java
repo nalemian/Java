@@ -21,7 +21,7 @@ class MathematicianTest {
         Student excellentStudent = new ExcellentStudent("Аня");
         studentCollection.add(badStudent);
         studentCollection.add(excellentStudent);
-        mathematician.giveHomework(studentCollection, mathematician.getNameOfLesson(),"производная");
+        mathematician.giveHomework(studentCollection, mathematician.getNameOfLesson(), "производная");
         mathematician.teachLesson(mathLesson, studentCollection, "дроби");
         for (Student student : studentCollection) {
             student.doHomework();

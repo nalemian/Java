@@ -11,7 +11,6 @@ public class PolymorphismTest {
 
     @Test
     void testBadStudent() {
-        // var student=new BadStudent();
         System.out.println(1);
     }
 

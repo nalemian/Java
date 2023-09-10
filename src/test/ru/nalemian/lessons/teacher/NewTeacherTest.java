@@ -30,7 +30,7 @@ class NewTeacherTest {
 
         assertThrows(
                 NullPointerException.class,
-                () -> physicist.teachLesson(physicsLesson, null,"статика")
+                () -> physicist.teachLesson(physicsLesson, null, "статика")
         );
     }
 }
