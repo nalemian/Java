@@ -62,4 +62,29 @@ class CombinationsTest {
         assertEquals(listWithoutElements, Collections.emptyList());
         System.out.println(listWithoutElements);
     }
+
+    @Test
+    void testArrayOfIntegers() {
+        List<Integer> integers = List.of(1, 2, 3);
+
+        var expected = List.of(
+                List.of(1),
+                List.of(2),
+                List.of(3),
+                List.of(1, 2),
+                List.of(1, 3),
+                List.of(2, 3),
+                List.of(1, 2, 3)
+        );
+        //var result = Combinations.combinations(integers); где такой метод?
+        var result = Combinations.combinations(integers, integers.size());
+
+        assertEquals(expected.size(), result.size());
+
+        for (List<Integer> integerList : expected) {
+            assertTrue(result.contains(integerList));
+        }
+
+
+    }
 }
