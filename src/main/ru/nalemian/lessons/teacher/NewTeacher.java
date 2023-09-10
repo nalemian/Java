@@ -19,68 +19,33 @@ public class NewTeacher {
         return this.nameOfLesson;
     }
 
-    public void teachLesson(Lesson lesson, Collection<Student> studentCollection) {
-        if (lesson.getLessonIsOver()) {
+    public void teachLesson(Lesson lesson, Collection<Student> studentCollection, String lessonTheme) {
+        if (lesson.getLessonName().contains(lessonTheme)) {
             throw new RuntimeException("Урок уже закончился"); //для исключений
         }
         String lessonName = lesson.getLessonName();
         if (lessonName.equals(getNameOfLesson())) {
             System.out.println("начинаю урок '" + lessonName + "'");
-            lesson.start();
+            lesson.start(lessonTheme);
             for (Student student : studentCollection) {
                 if (student.getCompletedWork().isEmpty() && student.getNotCompletedWork().isEmpty()) {
                     break;
                 } else {
                     if (student.getCompletedWork().isEmpty()) {
-                        for (Homework homework : student.getNotCompletedWork()) {
-                            if (this.nameOfLesson.equals(homework.getLessonName())) {
-                                if (!student.getMarks().isEmpty()) {
-                                    Integer allMarks = 0;
-                                    for (Mark mark : student.getMarks()) {
-                                        allMarks += mark.getMark();
-                                    }
-                                    Integer averageMark = allMarks / student.getMarks().size();
-                                    if (averageMark >= 4) {
-                                        student.getMarks().add(new Mark(homework.getLessonName(), 3));
-                                    } else {
-                                        student.getMarks().add(new Mark(homework.getLessonName(), 2));
-                                    }
-                                } else {
-                                    student.getMarks().add(new Mark(homework.getLessonName(), 2));
-                                }
-                            }
-                        }
+                        student.getMarks().add(new Mark(lesson.getLessonName(), 2));
                     } else {
-                        for (Homework homework : student.getCompletedWork()) {
-                            if (this.nameOfLesson.equals(homework.getLessonName())) {
-                                if (!student.getMarks().isEmpty()) {
-                                    Integer allMarks = 0;
-                                    for (Mark mark : student.getMarks()) {
-                                        allMarks += mark.getMark();
-                                    }
-                                    int averageMark = allMarks / student.getMarks().size();
-                                    if (averageMark >= 4) {
-                                        student.getMarks().add(new Mark(homework.getLessonName(), 5));
-                                    } else {
-                                        student.getMarks().add(new Mark(homework.getLessonName(), 4));
-                                    }
-                                } else {
-                                    student.getMarks().add(new Mark(homework.getLessonName(), 5));
-                                }
-                            }
-                        }
+                        student.getMarks().add(new Mark(lesson.getLessonName(), 5));
                     }
                 }
             }
             for (Student student : studentCollection) {
-                student.addKnowledge(new Knowledge(lessonName));
+                student.addKnowledge(new Knowledge(lessonName, lessonTheme));
             }
-            giveHomework(studentCollection, lessonName);
-
+            giveHomework(studentCollection, lessonName, lessonTheme);
         }
     }
 
-    public void giveHomework(Collection<Student> studentCollection, String name) {
+    public void giveHomework(Collection<Student> studentCollection, String name, String lessonTheme) {
         for (Student student : studentCollection) {
             student.addHomework(new Homework(name, LocalDate.now()));
         }

@@ -28,19 +28,22 @@ public class SchoolWorkingProcessTest {
         Student excellentStudent = new ExcellentStudent("Аня");
         studentCollection.add(badStudent);
         studentCollection.add(excellentStudent);
-        mathematician.giveHomework(studentCollection, mathematician.getNameOfLesson());
-        physicist.giveHomework(studentCollection, physicist.getNameOfLesson());
+        for (Student student : studentCollection) {
+            student.addKnowledge(new Knowledge(mathematician.getNameOfLesson(), "комбинаторика"));
+            student.addKnowledge(new Knowledge(physicist.getNameOfLesson(), "электростатика"));
+        }
+        mathematician.giveHomework(studentCollection, mathematician.getNameOfLesson(), "комбинаторика");
+        physicist.giveHomework(studentCollection, physicist.getNameOfLesson(), "электростатика");
         for (Student student : studentCollection) {
             student.doHomework();
         }
-        mathematician.teachLesson(mathLesson, studentCollection);
-        physicist.teachLesson(physicsLesson, studentCollection);
-        //physicist.teachLesson(mathLesson, studentCollection);
+        mathematician.teachLesson(mathLesson, studentCollection, "дроби");
+        physicist.teachLesson(physicsLesson, studentCollection, "динамика");
         for (Mark mark : badStudent.getMarks()) {
-            System.out.println(mark.getLessonName() + " : " + mark.getMark());
+            System.out.println(badStudent.getStudentName() + ", " + mark.getLessonName() + " : " + mark.getMark());
         }
         for (Mark mark : excellentStudent.getMarks()) {
-            System.out.println(mark.getLessonName() + " : " + mark.getMark());
+            System.out.println(excellentStudent.getStudentName() + ", " + mark.getLessonName() + " : " + mark.getMark());
         }
         for (Student student : studentCollection) {
             student.doHomework();
@@ -56,7 +59,45 @@ public class SchoolWorkingProcessTest {
             }
             assertTrue(names.contains("физика"));
             assertTrue(names.contains("математика"));
-            assertEquals(2, names.size());
+        }
+        mathematician.teachLesson(mathLesson, studentCollection, "теория вероятности");
+        physicist.teachLesson(physicsLesson, studentCollection, "баллистика");
+        for (Student student : studentCollection) {
+            Integer counter = 0;
+            System.out.print(student.getStudentName() + ", физика: ");
+            for (Knowledge knowledge : student.getKnowledges()) {
+                if (knowledge.getLessonName().equals("физика")) {
+                    if (counter > 0) {
+                        System.out.print(", " + knowledge.getLessonTheme());
+                    } else {
+                        System.out.print(knowledge.getLessonTheme());
+                    }
+                    counter++;
+                }
+            }
+            counter = 0;
+            System.out.println();
+            System.out.print(student.getStudentName() + ", математика: ");
+            for (Knowledge knowledge : student.getKnowledges()) {
+                if (knowledge.getLessonName().equals("математика")) {
+                    if (counter > 0) {
+                        System.out.print(", " + knowledge.getLessonTheme());
+                    } else {
+                        System.out.print(knowledge.getLessonTheme());
+                    }
+                    counter++;
+                }
+            }
+            System.out.println();
+        }
+        System.out.print("оценки Тани: ");
+        for (Mark mark : badStudent.getMarks()) {
+            System.out.print(mark.getMark() + " ");
+        }
+        System.out.println();
+        System.out.print("оценки Ани: ");
+        for (Mark mark : excellentStudent.getMarks()) {
+            System.out.print(mark.getMark() + " ");
         }
     }
 }

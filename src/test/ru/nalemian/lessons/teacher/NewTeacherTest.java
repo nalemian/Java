@@ -16,10 +16,10 @@ class NewTeacherTest {
     void whenLessonIsOver_thenRuntimeException() {
         NewTeacher newTeacher = new NewTeacher("урок");
         Lesson newLesson = new MathLesson();
-        newLesson.start();
+        newLesson.start("дроби");
         assertThrows(
                 RuntimeException.class,
-                () -> newTeacher.teachLesson(newLesson, Collections.emptyList())
+                () -> newTeacher.teachLesson(newLesson, Collections.emptyList(), "дроби")
         );
     }
 
@@ -30,7 +30,7 @@ class NewTeacherTest {
 
         assertThrows(
                 NullPointerException.class,
-                () -> physicist.teachLesson(physicsLesson, null)
+                () -> physicist.teachLesson(physicsLesson, null,"статика")
         );
     }
 }

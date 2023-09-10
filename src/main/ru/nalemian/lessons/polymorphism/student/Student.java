@@ -11,7 +11,6 @@ import java.util.HashSet;
 public abstract class Student {
 
     private final String studentName;
-    // TODO знания тоже должны отличаться. ведь тема урока вчера != теме урока сегодня
     private final Collection<Knowledge> knowledges;
     private final Collection<Homework> completedWork;
     private final Collection<Homework> notCompletedWork;

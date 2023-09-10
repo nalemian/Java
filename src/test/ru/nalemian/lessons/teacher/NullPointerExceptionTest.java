@@ -17,7 +17,7 @@ class NullPointerExceptionTest {
         Physicist physicist = new Physicist("физика");
         Lesson physicsLesson = new PhysicsLesson();
         try {
-            physicist.teachLesson(physicsLesson, null);
+            physicist.teachLesson(physicsLesson, null, "кинематика");
         } catch (NullPointerException exception) {
             assertEquals("class java.lang.NullPointerException", exception.getClass().toString());
         }

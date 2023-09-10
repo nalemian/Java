@@ -20,8 +20,8 @@ class PhysicistTest {
         Student excellentStudent = new ExcellentStudent("Аня");
         studentCollection.add(badStudent);
         studentCollection.add(excellentStudent);
-        physicist.giveHomework(studentCollection, physicist.getNameOfLesson());
-        physicist.teachLesson(physicsLesson, studentCollection);
+        physicist.giveHomework(studentCollection, physicist.getNameOfLesson(),"баллистика");
+        physicist.teachLesson(physicsLesson, studentCollection, "кинематика");
         for (Student student : studentCollection) {
             student.doHomework();
         }

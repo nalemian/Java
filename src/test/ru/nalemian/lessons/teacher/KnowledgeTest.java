@@ -26,12 +26,8 @@ class KnowledgeTest {
         Student excellentStudent = new ExcellentStudent("Аня");
         studentCollection.add(badStudent);
         studentCollection.add(excellentStudent);
-        mathematician.teachLesson(mathLesson, studentCollection);
-        mathematician.teachLesson(mathLesson, studentCollection);
-        mathematician.teachLesson(physicsLesson, studentCollection);
-        physicist.teachLesson(physicsLesson, studentCollection);
-        physicist.teachLesson(physicsLesson, studentCollection);
-        physicist.teachLesson(mathLesson, studentCollection);
+        mathematician.teachLesson(mathLesson, studentCollection, "дроби");
+        physicist.teachLesson(physicsLesson, studentCollection, "кинематика");
         for (Student student : studentCollection) {
             Collection<String> names = new ArrayList<>();
             for (Knowledge knowledge : student.getKnowledges()) {
@@ -40,6 +36,34 @@ class KnowledgeTest {
             assertTrue(names.contains("физика"));
             assertTrue(names.contains("математика"));
             assertEquals(2, names.size());
+        }
+    }
+
+    @Test
+    void testThatKnowledgesAreDifferent() {
+        Physicist physicist = new Physicist("физика");
+        Lesson physicsLesson = new PhysicsLesson();
+        Collection<Student> studentCollection = new ArrayList<>();
+        Student badStudent = new BadStudent("Таня");
+        Student excellentStudent = new ExcellentStudent("Аня");
+        studentCollection.add(badStudent);
+        studentCollection.add(excellentStudent);
+        for (Student student : studentCollection) {
+            student.addKnowledge(new Knowledge(physicist.getNameOfLesson(), "электростатика"));
+        }
+        physicist.giveHomework(studentCollection, physicist.getNameOfLesson(), "электростатика");
+        for (Student student : studentCollection) {
+            student.doHomework();
+        }
+        physicist.teachLesson(physicsLesson, studentCollection, "динамика");
+
+        for (Student student : studentCollection) {
+            Collection<String> names = new ArrayList<>();
+            for (Knowledge knowledge : student.getKnowledges()) {
+                names.add(knowledge.getLessonTheme());
+            }
+            assertTrue(names.contains("электростатика"));
+            assertTrue(names.contains("динамика"));
         }
     }
 }

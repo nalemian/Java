@@ -1,5 +1,8 @@
 package ru.nalemian.lessons.polymorphism;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 public interface Lesson {
     String getLessonName();
 
@@ -7,5 +10,6 @@ public interface Lesson {
 
     void schoolSubject();
 
-    void start();
+    void start(String theme);
+    Collection<String> getThemes();
 }
