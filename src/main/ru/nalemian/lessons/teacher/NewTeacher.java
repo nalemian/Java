@@ -24,6 +24,9 @@ public class NewTeacher {
         if (lesson.getLessonName().contains(lessonTheme)) {
             throw new RuntimeException("Урок уже закончился"); //для исключений
         }
+        if (studentCollection.isEmpty()) {
+            throw new RuntimeException("Учеников в классе нет");
+        }
         String lessonName = lesson.getLessonName();
         if (lessonName.equals(getNameOfLesson())) {
             System.out.println("начинаю урок '" + lessonName + "'");

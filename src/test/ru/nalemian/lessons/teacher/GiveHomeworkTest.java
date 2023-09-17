@@ -11,6 +11,11 @@ import java.util.Collection;
 import static org.junit.jupiter.api.Assertions.*;
 
 class GiveHomeworkTest {
+
+    /**
+     * здесь тестируется несделанная домашка
+     */
+
     @Test
     void testThatCollectionNotCompletedWorkIsChanging() {
         NewTeacher mathematician = new Mathematician("математика");

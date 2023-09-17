@@ -12,6 +12,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class NullPointerExceptionTest {
+
+    /**
+     * здесь тестируется исключение NullPointerException
+     */
+
     @Test
     void ifTheStudentCollectionValueIsNullThenNullPointerException() {
         Physicist physicist = new Physicist("физика");
