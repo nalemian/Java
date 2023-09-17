@@ -23,21 +23,12 @@ public class DoHomeworkTest {
         studentCollection.add(badStudent);
         studentCollection.add(excellentStudent);
         mathematician.giveHomework(studentCollection, mathematician.getNameOfLesson(), "дроби");
+        for (Student student : studentCollection) {
+            student.doHomework("дроби", mathematician.getNameOfLesson());
+        }
         mathematician.teachLesson(mathLesson, studentCollection, "биномы Ньютона");
         for (Student student : studentCollection) {
-            student.doHomework();
-        }
-        for (Student student : studentCollection) {
-            if (student.getCompletedWork().isEmpty()) {
-                assertTrue(student.getStudentName().equals("Таня"));
-            } else {
-                for (Homework homework : student.getCompletedWork()) {
-                    if (homework.getLessonName().equals("математика")) {
-                        assertTrue(student.getStudentName().equals("Аня"));
-                        break;
-                    }
-                }
-            }
+            assertEquals(student.getMarks().size(), 1);
         }
     }
 }

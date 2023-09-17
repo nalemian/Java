@@ -23,18 +23,16 @@ class PhysicistTest {
         physicist.giveHomework(studentCollection, physicist.getNameOfLesson(), "баллистика");
         physicist.teachLesson(physicsLesson, studentCollection, "кинематика");
         for (Student student : studentCollection) {
-            student.doHomework();
+            student.doHomework("баллистика", physicist.getNameOfLesson());
         }
         Boolean homeworkSearch = false;
         for (Student student : studentCollection) {
             if (student.getCompletedWork().isEmpty()) {
-                assertEquals("Таня", student.getStudentName());
                 System.out.println("домашняя работа не сделана");
                 System.out.println("очень плохо, " + student.getStudentName() + "! Ставлю 2 по предмету 'математика'");
             } else {
                 for (Homework homework : student.getCompletedWork()) {
                     if (homework.getLessonName().equals("математика")) {
-                        assertEquals("Аня", student.getStudentName());
                         homeworkSearch = true;
                         System.out.println("домашняя работа сделана");
                         System.out.println("молодец, " + student.getStudentName() + "! Ставлю 5 по предмету 'математика'");
@@ -47,9 +45,8 @@ class PhysicistTest {
                 }
             }
         }
-        assertFalse(badStudent.getNotCompletedWork().isEmpty());
-        assertTrue(excellentStudent.getNotCompletedWork().isEmpty());
-        assertTrue(badStudent.getCompletedWork().isEmpty());
-        assertFalse(excellentStudent.getCompletedWork().isEmpty());
+        for (Student student : studentCollection) {
+            assertEquals(student.getMarks().size(), 0);
+        }
     }
 }

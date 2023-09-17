@@ -53,7 +53,7 @@ class KnowledgeTest {
         }
         physicist.giveHomework(studentCollection, physicist.getNameOfLesson(), "электростатика");
         for (Student student : studentCollection) {
-            student.doHomework();
+            student.doHomework("электростатика", physicist.getNameOfLesson());
         }
         physicist.teachLesson(physicsLesson, studentCollection, "динамика");
 

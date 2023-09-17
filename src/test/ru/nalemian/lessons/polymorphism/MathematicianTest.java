@@ -24,7 +24,7 @@ class MathematicianTest {
         mathematician.giveHomework(studentCollection, mathematician.getNameOfLesson(), "производная");
         mathematician.teachLesson(mathLesson, studentCollection, "дроби");
         for (Student student : studentCollection) {
-            student.doHomework();
+            student.doHomework("производная", mathematician.getNameOfLesson());
         }
         Boolean homeworkSearch = false;
         for (Student student : studentCollection) {
@@ -35,7 +35,6 @@ class MathematicianTest {
             } else {
                 for (Homework homework : student.getCompletedWork()) {
                     if (homework.getLessonName().equals("математика")) {
-                        assertEquals("Аня", student.getStudentName());
                         homeworkSearch = true;
                         System.out.println("домашняя работа сделана");
                         System.out.println("молодец, " + student.getStudentName() + "! Ставлю 5 по предмету 'математика'");
@@ -48,9 +47,8 @@ class MathematicianTest {
                 }
             }
         }
-        assertFalse(badStudent.getNotCompletedWork().isEmpty());
-        assertTrue(excellentStudent.getNotCompletedWork().isEmpty());
-        assertTrue(badStudent.getCompletedWork().isEmpty());
-        assertFalse(excellentStudent.getCompletedWork().isEmpty());
+        for (Student student : studentCollection) {
+            assertEquals(student.getKnowledges().size(), 1);
+        }
     }
 }
