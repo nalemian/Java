@@ -1,6 +1,7 @@
-package ru.nalemian.lessons.collections;
+package ru.nalemian.lessons.collections.combinations;
 
 import org.junit.jupiter.api.Test;
+import ru.nalemian.lessons.collections.combinations.Combinations;
 import ru.nalemian.lessons.teacher.NewTeacher;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -9,7 +10,7 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-import static ru.nalemian.lessons.collections.Combinations.combinations;
+import static ru.nalemian.lessons.collections.combinations.Combinations.combinations;
 
 class CombinationsTest {
 

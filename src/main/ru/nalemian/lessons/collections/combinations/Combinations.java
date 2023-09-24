@@ -1,4 +1,4 @@
-package ru.nalemian.lessons.collections;
+package ru.nalemian.lessons.collections.combinations;
 
 import java.util.*;
 
