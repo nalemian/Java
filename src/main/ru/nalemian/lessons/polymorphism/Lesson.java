@@ -11,5 +11,6 @@ public interface Lesson {
     void schoolSubject();
 
     void start(String theme);
+
     Collection<String> getThemes();
 }

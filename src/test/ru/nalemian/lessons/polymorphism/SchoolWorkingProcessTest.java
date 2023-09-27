@@ -24,10 +24,12 @@ public class SchoolWorkingProcessTest {
         Lesson mathLesson = new MathLesson();
         Lesson physicsLesson = new PhysicsLesson();
         Collection<Student> studentCollection = new ArrayList<>();
-        Student badStudent = new BadStudent("Таня");
-        Student excellentStudent = new ExcellentStudent("Аня");
-        studentCollection.add(badStudent);
-        studentCollection.add(excellentStudent);
+        Student student1 = new Student("Таня") {
+        };
+        Student student2 = new Student("Аня") {
+        };
+        studentCollection.add(student1);
+        studentCollection.add(student2);
         for (Student student : studentCollection) {
             student.addKnowledge(new Knowledge(mathematician.getNameOfLesson(), "комбинаторика"));
             student.addKnowledge(new Knowledge(physicist.getNameOfLesson(), "электростатика"));
@@ -35,23 +37,24 @@ public class SchoolWorkingProcessTest {
         mathematician.giveHomework(studentCollection, mathematician.getNameOfLesson(), "комбинаторика");
         physicist.giveHomework(studentCollection, physicist.getNameOfLesson(), "электростатика");
         for (Student student : studentCollection) {
-            student.doHomework();
+            student.doHomework("комбинаторика", mathematician.getNameOfLesson());
+            student.doHomework("электростатика", physicist.getNameOfLesson());
         }
         mathematician.teachLesson(mathLesson, studentCollection, "дроби");
         physicist.teachLesson(physicsLesson, studentCollection, "динамика");
-        for (Mark mark : badStudent.getMarks()) {
-            System.out.println(badStudent.getStudentName() + ", " + mark.getLessonName() + " : " + mark.getMark());
+        for (Student student : studentCollection) {
+            student.getPossibleMarks().removeAll(student.getPossibleMarks());
         }
-        for (Mark mark : excellentStudent.getMarks()) {
-            System.out.println(excellentStudent.getStudentName() + ", " + mark.getLessonName() + " : " + mark.getMark());
+        for (Mark mark : student1.getMarks()) {
+            System.out.println(student1.getStudentName() + ", " + mark.getLessonName() + " : " + mark.getMark());
+        }
+        for (Mark mark : student2.getMarks()) {
+            System.out.println(student2.getStudentName() + ", " + mark.getLessonName() + " : " + mark.getMark());
         }
         for (Student student : studentCollection) {
-            student.doHomework();
+            student.doHomework("дроби", mathematician.getNameOfLesson());
+            student.doHomework("динамика", physicist.getNameOfLesson());
         }
-        assertFalse(badStudent.getNotCompletedWork().isEmpty());
-        assertTrue(excellentStudent.getNotCompletedWork().isEmpty());
-        assertTrue(badStudent.getCompletedWork().isEmpty());
-        assertFalse(excellentStudent.getCompletedWork().isEmpty());
         for (Student student : studentCollection) {
             Collection<String> names = new ArrayList<>();
             for (Knowledge knowledge : student.getKnowledges()) {
@@ -62,6 +65,12 @@ public class SchoolWorkingProcessTest {
         }
         mathematician.teachLesson(mathLesson, studentCollection, "теория вероятности");
         physicist.teachLesson(physicsLesson, studentCollection, "баллистика");
+        for (Mark mark : student1.getMarks()) {
+            System.out.println(student1.getStudentName() + ", " + mark.getLessonName() + " : " + mark.getMark());
+        }
+        for (Mark mark : student2.getMarks()) {
+            System.out.println(student2.getStudentName() + ", " + mark.getLessonName() + " : " + mark.getMark());
+        }
         for (Student student : studentCollection) {
             Integer counter = 0;
             System.out.print(student.getStudentName() + ", физика: ");
@@ -91,13 +100,17 @@ public class SchoolWorkingProcessTest {
             System.out.println();
         }
         System.out.print("оценки Тани: ");
-        for (Mark mark : badStudent.getMarks()) {
+        for (Mark mark : student1.getMarks()) {
             System.out.print(mark.getMark() + " ");
         }
         System.out.println();
         System.out.print("оценки Ани: ");
-        for (Mark mark : excellentStudent.getMarks()) {
+        for (Mark mark : student2.getMarks()) {
             System.out.print(mark.getMark() + " ");
+        }
+        for (Student student : studentCollection) {
+            assertEquals(student.getKnowledges().size(), 6);
+            assertEquals(student.getMarks().size(), 4);
         }
     }
 }

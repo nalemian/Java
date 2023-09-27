@@ -7,6 +7,7 @@ import ru.nalemian.lessons.polymorphism.student.Student;
 
 import java.time.LocalDate;
 import java.util.Collection;
+import java.util.Collections;
 
 public class NewTeacher {
     String nameOfLesson;
@@ -23,18 +24,35 @@ public class NewTeacher {
         if (lesson.getLessonName().contains(lessonTheme)) {
             throw new RuntimeException("Урок уже закончился"); //для исключений
         }
+        if (studentCollection.isEmpty()) {
+            throw new RuntimeException("Учеников в классе нет");
+        }
         String lessonName = lesson.getLessonName();
         if (lessonName.equals(getNameOfLesson())) {
             System.out.println("начинаю урок '" + lessonName + "'");
             lesson.start(lessonTheme);
             for (Student student : studentCollection) {
-                if (student.getCompletedWork().isEmpty() && student.getNotCompletedWork().isEmpty()) {
-                    break;
-                } else {
-                    if (student.getCompletedWork().isEmpty()) {
-                        student.getMarks().add(new Mark(lesson.getLessonName(), 2));
-                    } else {
-                        student.getMarks().add(new Mark(lesson.getLessonName(), 5));
+                Boolean check = false;
+                for (Homework homework : student.getCompletedWork()) {
+                    if (this.nameOfLesson.equals(homework.getLessonName())) {
+                        for (Mark mark : student.getPossibleMarks()) {
+                            if (mark.getLessonTheme().equals(homework.getLessonTheme())) {
+                                student.getMarks().add(new Mark(homework.getLessonName(), mark.getMark(), mark.getLessonTheme()));
+                                check = true;
+                            }
+                        }
+                    }
+                }
+                if (!check) {
+                    for (Homework homework : student.getNotCompletedWork()) {
+                        if (this.nameOfLesson.equals(homework.getLessonName())) {
+                            for (Mark mark : student.getPossibleMarks()) {
+                                if (mark.getLessonTheme().equals(homework.getLessonTheme())) {
+                                    student.getMarks().add(new Mark(homework.getLessonName(), 2, mark.getLessonTheme()));
+                                    check = true;
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -47,7 +65,7 @@ public class NewTeacher {
 
     public void giveHomework(Collection<Student> studentCollection, String name, String lessonTheme) {
         for (Student student : studentCollection) {
-            student.addHomework(new Homework(name, LocalDate.now()));
+            student.addHomework(new Homework(lessonTheme, name, LocalDate.now()));
         }
     }
 }

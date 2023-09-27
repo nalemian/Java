@@ -13,31 +13,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class KnowledgeTest {
-    @Test
-    void testThatLessonGiveStudentKnowledge() {
-        Physicist physicist = new Physicist("физика");
-        physicist.teaching();
-        Mathematician mathematician = new Mathematician("математика");
-        mathematician.teaching();
-        Lesson mathLesson = new MathLesson();
-        Lesson physicsLesson = new PhysicsLesson();
-        Collection<Student> studentCollection = new ArrayList<>();
-        Student badStudent = new BadStudent("Таня");
-        Student excellentStudent = new ExcellentStudent("Аня");
-        studentCollection.add(badStudent);
-        studentCollection.add(excellentStudent);
-        mathematician.teachLesson(mathLesson, studentCollection, "дроби");
-        physicist.teachLesson(physicsLesson, studentCollection, "кинематика");
-        for (Student student : studentCollection) {
-            Collection<String> names = new ArrayList<>();
-            for (Knowledge knowledge : student.getKnowledges()) {
-                names.add(knowledge.getLessonName());
-            }
-            assertTrue(names.contains("физика"));
-            assertTrue(names.contains("математика"));
-            assertEquals(2, names.size());
-        }
-    }
+
+    /**
+     * здесь тестируется, разные ли знания есть у ученика
+     */
 
     @Test
     void testThatKnowledgesAreDifferent() {
@@ -53,7 +32,7 @@ class KnowledgeTest {
         }
         physicist.giveHomework(studentCollection, physicist.getNameOfLesson(), "электростатика");
         for (Student student : studentCollection) {
-            student.doHomework();
+            student.doHomework("электростатика", physicist.getNameOfLesson());
         }
         physicist.teachLesson(physicsLesson, studentCollection, "динамика");
 
