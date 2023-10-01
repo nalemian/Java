@@ -14,7 +14,7 @@ class Thread1 extends Thread {
         while (true) {
             try {
                 if (thread2.getCheckOut()) {
-                    interrupt();
+                    return;
                 }
                 Thread.sleep(1000); //пауза
                 trueOrFalse = !trueOrFalse;

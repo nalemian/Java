@@ -1,6 +1,6 @@
 package ru.nalemian.lessons.polymorphism;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import ru.nalemian.lessons.polymorphism.student.BadStudent;
 import ru.nalemian.lessons.polymorphism.student.ExcellentStudent;
 import ru.nalemian.lessons.polymorphism.student.Student;

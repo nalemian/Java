@@ -14,17 +14,10 @@ public class Thread2 extends Thread {
         return checkOut;
     }
 
-    public boolean getTrueOrFalse() {
-        return trueOrFalse;
-    }
-
     public void setTrueOrFalse(boolean trueOrFalse) {
         this.trueOrFalse = trueOrFalse;
     }
 
-    //public Thread2(boolean trueOrFalse) {
-    //this.trueOrFalse=trueOrFalse;
-    //}
     @Override
     public void run() {
         int i = 30;
@@ -39,8 +32,8 @@ public class Thread2 extends Thread {
                 }
             }
             if (i == 0) {
-                interrupt();
                 setCheckOut(true);
+                return;
             }
         }
     }
